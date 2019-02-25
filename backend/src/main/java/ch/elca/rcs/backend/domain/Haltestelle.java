@@ -5,11 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.web.JsonPath;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
+@Entity
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Haltestelle {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @JsonProperty("Dst-Nr.")
     private String name;
