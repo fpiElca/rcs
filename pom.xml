@@ -3,12 +3,14 @@
       <modelVersion>4.0.0</modelVersion>
       <groupId>ch.elca</groupId>
       <artifactId>rcs</artifactId>
-      <version>1</version>
+      <version>0.0.1-SNAPSHOT</version>
+      <name>rcs</name>
       <packaging>pom</packaging>
      
       <modules>
         <module>frontend</module>
         <module>frontend7</module>
         <module>backend</module>
+        <module>release</module>
       </modules>
     </project>
