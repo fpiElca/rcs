@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,5 +36,6 @@ public class CsvTests {
 
         List<Haltestelle> items = readValues.readAll();
         int i = 0;
+        Assert.assertTrue(items.size() > 10);
     }
 }
