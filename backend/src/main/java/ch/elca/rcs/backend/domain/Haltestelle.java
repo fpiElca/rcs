@@ -11,24 +11,24 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Haltestelle {
 
-    @JsonProperty("Dst-Nr.")
+    @JsonProperty("Dst-Bezeichnung-offiziell")
     private String name;
 
-    @JsonProperty("Dst-Nr.")
+    @JsonProperty("Ort")
     private String ort;
 
-    @JsonProperty("Dst-Nr.")
+    @JsonProperty("KOORDZ")
     private BigDecimal hoehe;
 
-    @JsonProperty("Dst-Nr.")
+    @JsonProperty("Gde-Name")
     private String gemeinde;
 
-    @JsonProperty("Dst-Nr.")
+    @JsonProperty("GO-Abk")
     private String transportunternehmung;
 
-    @JsonProperty("Dst-Nr.")
+    @JsonProperty("KOORDE")
     private BigDecimal koordOst;
 
-    @JsonProperty("Dst-Nr.")
+    @JsonProperty("KOORDN")
     private BigDecimal koordNord;
 }
