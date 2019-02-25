@@ -27,15 +27,12 @@ public class CsvTests {
                 .setUseHeader(true)
                 .setColumnSeparator(';')
                 .build();
-
-        CsvSchema bootstarpSchema = CsvSchema.emptySchema().withHeader();
         CsvMapper csvMapper = new CsvMapper();
         csvMapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
         File file = new ClassPathResource("didok.csv").getFile();
         MappingIterator<Haltestelle> readValues = csvMapper.reader(Haltestelle.class).with(schema).readValues(file);
 
         List<Haltestelle> items = readValues.readAll();
-        int i = 0;
         Assert.assertTrue(items.size() > 10);
     }
 }
