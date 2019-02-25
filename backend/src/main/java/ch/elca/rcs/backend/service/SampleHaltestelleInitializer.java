@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,12 +32,33 @@ public class SampleHaltestelleInitializer implements ApplicationRunner {
         List<Haltestelle> sampleData = new LinkedList<>();
 
         Haltestelle haltestelle = new Haltestelle();
+        haltestelle.setName("First Haltestelle");
+        haltestelle.setGemeinde("Bern");
+        haltestelle.setHoehe(BigDecimal.valueOf(4));
+        haltestelle.setOrt("Bern");
+        haltestelle.setTransportunternehmung("SBB");
+        haltestelle.setKoordNord(BigDecimal.valueOf(12));
+        haltestelle.setKoordOst(BigDecimal.valueOf(12));
         sampleData.add(haltestelle);
 
         haltestelle = new Haltestelle();
+        haltestelle.setName("Second Haltestelle");
+        haltestelle.setGemeinde("Neuchatel");
+        haltestelle.setHoehe(BigDecimal.valueOf(10));
+        haltestelle.setOrt("Neuchatel");
+        haltestelle.setTransportunternehmung("SBB");
+        haltestelle.setKoordNord(BigDecimal.valueOf(21));
+        haltestelle.setKoordOst(BigDecimal.valueOf(21));
         sampleData.add(haltestelle);
 
         haltestelle = new Haltestelle();
+        haltestelle.setName("Third Haltestelle");
+        haltestelle.setGemeinde("Genève");
+        haltestelle.setHoehe(BigDecimal.valueOf(15));
+        haltestelle.setOrt("Genève");
+        haltestelle.setTransportunternehmung("SBB");
+        haltestelle.setKoordNord(BigDecimal.valueOf(14));
+        haltestelle.setKoordOst(BigDecimal.valueOf(14));
         sampleData.add(haltestelle);
 
         haltestelleRepository.saveAll(sampleData);
