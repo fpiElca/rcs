@@ -1,7 +1,7 @@
 package ch.elca.rcs.backend;
 
+import ch.elca.rcs.backend.domain.Haltestelle;
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
