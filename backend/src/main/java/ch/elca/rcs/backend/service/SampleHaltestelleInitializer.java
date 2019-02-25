@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This class initializes some sample Haltestelle so that we can play a bit with the application
+ * while some content in it.
+ */
 @Component
 public class SampleHaltestelleInitializer implements ApplicationRunner {
 
