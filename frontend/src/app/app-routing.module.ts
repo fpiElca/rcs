@@ -1,33 +1,33 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-
-import { SettingsContainerComponent } from "./settings";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {HaltestellenComponent} from '@app/haltestelle-list/haltestellen.component';
+import {HaltestelleDetailComponent} from '@app/haltestelle-detail/haltestelle-detail.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    redirectTo: "about",
-    pathMatch: "full"
-  },
-  {
-    path: "settings",
-    component: SettingsContainerComponent,
-    data: { title: "anms.menu.settings" }
-  },
-  {
-    path: "**",
-    redirectTo: "about"
-  }
+	{
+		path: "",
+		redirectTo: "haltestellen",
+		pathMatch: "full"
+	},
+	{
+		path: "haltestellen",
+		component: HaltestellenComponent,
+	},
+	{
+		path: "haltestelle/:id",
+		component: HaltestelleDetailComponent,
+	},
 ];
 
 @NgModule({
-  // useHash supports github.io demo page, remove in your app
-  imports: [
-    RouterModule.forRoot(routes, {
-      useHash: true,
-      scrollPositionRestoration: "enabled"
-    })
-  ],
-  exports: [RouterModule]
+	// useHash supports github.io demo page, remove in your app
+	imports: [
+		RouterModule.forRoot(routes, {
+			useHash: true,
+			scrollPositionRestoration: "enabled"
+		})
+	],
+	exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

@@ -10,7 +10,7 @@ import { StaticModule } from "./static";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { HaltestelleListComponent } from "./haltestelle-list/haltestelle-list.component";
+import { HaltestellenComponent } from "./haltestelle-list/haltestellen.component";
 import { HaltestelleDetailComponent } from "./haltestelle-detail/haltestelle-detail.component";
 
 @NgModule({
@@ -32,7 +32,7 @@ import { HaltestelleDetailComponent } from "./haltestelle-detail/haltestelle-det
   ],
   declarations: [
     AppComponent,
-    HaltestelleListComponent,
+    HaltestellenComponent,
     HaltestelleDetailComponent
   ],
   providers: [],

@@ -11,6 +11,5 @@
         <module>frontend</module>
         <module>frontend7</module>
         <module>backend</module>
-        <module>release</module>
       </modules>
     </project>
