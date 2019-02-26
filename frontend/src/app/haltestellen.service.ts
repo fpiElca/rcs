@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Haltestelle} from './haltestelle';
 import {from, Observable} from "rxjs";
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
 
 
 @Injectable({
@@ -68,8 +67,6 @@ export class HaltestellenService {
 
   findAll(): Observable<Haltestelle[]> {
     return this.http
-      .get<Haltestelle[]>(`${this.endpointUrl}haltestellen`)
-      .pipe(map(response => response._embedded.haltestellen)
-      );
+      .get<Haltestelle[]>(`${this.endpointUrl}haltestellen`);
   }
 }
