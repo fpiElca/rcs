@@ -9,60 +9,60 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HaltestellenService {
 
-  public endpointUrl = 'http://localhost:8080/';
+  public endpointUrl = '/api/';
 
   constructor(protected http: HttpClient) {
   }
 
-  getHaltestellen(): Observable<Haltestelle[]> {
-    // TODO: Return a collection resource
-    return from([[{
-      id: 1,
-      name: "Haltestelle 1",
-      ort: "Bern",
-      favorit: false,
-      hoehe: null,
-      gemeinde: "",
-      transportunternehmung: "",
-      koordOst: null,
-      koordNord: null
-    }, {
-      id: 2,
-      name: "Haltestelle 2",
-      ort: "Bern",
-      favorit: false,
-      hoehe: null,
-      gemeinde: "",
-      transportunternehmung: "",
-      koordOst: null,
-      koordNord: null
-    }, {
-      id: 3,
-      name: "Lorraine",
-      ort: "Bern",
-      favorit: true,
-      hoehe: null,
-      gemeinde: "",
-      transportunternehmung: "",
-      koordOst: null,
-      koordNord: null
-    }, {
-      id: 4,
-      name: "Bundesplatz",
-      ort: "Bern",
-      favorit: true,
-      hoehe: null,
-      gemeinde: "",
-      transportunternehmung: "",
-      koordOst: null,
-      koordNord: null
-    }
-    ]]);
-  }
+  // getHaltestellen(): Observable<Haltestelle[]> {
+  //   // TODO: Return a collection resource
+  //   return from([[{
+  //     id: 1,
+  //     name: "Haltestelle 1",
+  //     ort: "Bern",
+  //     favorit: false,
+  //     hoehe: null,
+  //     gemeinde: "",
+  //     transportunternehmung: "",
+  //     koordOst: null,
+  //     koordNord: null
+  //   }, {
+  //     id: 2,
+  //     name: "Haltestelle 2",
+  //     ort: "Bern",
+  //     favorit: false,
+  //     hoehe: null,
+  //     gemeinde: "",
+  //     transportunternehmung: "",
+  //     koordOst: null,
+  //     koordNord: null
+  //   }, {
+  //     id: 3,
+  //     name: "Lorraine",
+  //     ort: "Bern",
+  //     favorit: true,
+  //     hoehe: null,
+  //     gemeinde: "",
+  //     transportunternehmung: "",
+  //     koordOst: null,
+  //     koordNord: null
+  //   }, {
+  //     id: 4,
+  //     name: "Bundesplatz",
+  //     ort: "Bern",
+  //     favorit: true,
+  //     hoehe: null,
+  //     gemeinde: "",
+  //     transportunternehmung: "",
+  //     koordOst: null,
+  //     koordNord: null
+  //   }
+  //   ]]);
+  // }
 
-  find(id: number): Observable<Haltestelle> {
+  find(_self: string): Observable<Haltestelle> {
     return this.http
-      .get<Haltestelle>(`${this.endpointUrl}/${id}`);
+      .get<Haltestelle>(_self);
   }
 
   findAll(): Observable<Haltestelle[]> {

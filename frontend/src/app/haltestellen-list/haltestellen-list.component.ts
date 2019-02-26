@@ -9,6 +9,7 @@ import {Haltestelle} from '../haltestelle';
 })
 export class HaltestellenListComponent implements OnInit {
 
+  response:any;
   haltestellen: Haltestelle[];
 
   constructor(private haltestellenService: HaltestellenService) {
@@ -16,7 +17,8 @@ export class HaltestellenListComponent implements OnInit {
 
   ngOnInit() {
     this.haltestellenService.findAll().subscribe(data => {
-      this.haltestellen = data
+      this.response = data['_embedded'];
+      this.haltestellen = data['_embedded'].haltestellen;
     });
   }
 

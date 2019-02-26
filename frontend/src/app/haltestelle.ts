@@ -1,5 +1,4 @@
 export class Haltestelle {
-  id: number;
   name: String;
   ort: String;
   favorit: boolean;
@@ -8,4 +7,5 @@ export class Haltestelle {
   transportunternehmung: string;
   koordOst: string;
   koordNord: string;
+  _links:any;
 }

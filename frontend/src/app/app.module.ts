@@ -1,38 +1,29 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {Injectable, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HaltestellenListComponent} from './haltestellen-list/haltestellen-list.component';
 import {HaltestellenDetailComponent} from './haltestellen-detail/haltestellen-detail.component';
 
-import {MatIconModule, MatListModule} from '@angular/material';
+import {MatCardModule, MatIconModule, MatListModule} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
-import {ActivatedRouteSnapshot, Resolve, RouterModule, RouterStateSnapshot, Routes} from '@angular/router';
-import {Haltestelle} from './haltestelle';
-import {Observable, of} from 'rxjs';
-import {HaltestellenService} from './haltestellen.service';
-
-@Injectable({ providedIn: 'root' })
-export class HaltestellenResolver implements Resolve<Haltestelle> {
-  constructor(private service: HaltestellenService) {}
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Haltestelle> {
-    const id = route.params['id'] ? route.params['id'] : null;
-    if (id) {
-      return this.service.find(id);
-    }
-    return of(new Haltestelle());
-  }
-}
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  { path: "", component: HaltestellenListComponent},
-  { path: "haltestellen", component: HaltestellenListComponent},
   {
-    path: 'haltestellen/:id',
+    path: 'detail/:self',
     component: HaltestellenDetailComponent
+  },
+  {
+    path: 'haltestellen',
+    component: HaltestellenListComponent
+  },
+  { path: '',
+    redirectTo: '/haltestellen',
+    pathMatch: 'full'
   }
+
 ];
 
 @NgModule({
@@ -46,9 +37,11 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatListModule,
     MatIconModule,
+    MatCardModule,
     HttpClientModule,
     RouterModule.forRoot(
-      routes
+      routes,
+      { enableTracing: true }
     )
   ],
   providers: [],
@@ -56,4 +49,5 @@ const routes: Routes = [
 })
 
 
-export class AppModule { }
+export class AppModule {
+}

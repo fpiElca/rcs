@@ -1,42 +1,46 @@
-<div class="row justify-content-center">
-  <div class="col-8">
-      <h2><span>Haltestelle Information</span></h2>
-      <hr>
-        <dt><span>Name</span></dt>
-        <dd>
-          <span>{{haltestelle.name}}</span>
-        </dd>
-        <dt><span>Ort</span></dt>
-        <dd>
-          <span>{{haltestelle.ort}}</span>
-        </dd>
-        <dt><span>Höhe</span></dt>
-        <dd>
-          <span>{{haltestelle.hoehe}}</span>
-        </dd>
-        <dt><span>Name</span></dt>
-        <dd>
-          <span>{{haltestelle.name}}</span>
-        </dd>
-        <dt><span>Gemeinde</span></dt>
-        <dd>
-          <span>{{haltestelle.gmeinde}}</span>
-        </dd>
-        <dt><span>Phone Number 1</span></dt>
-        <dd>
-          <span>{{haltestelle.phoneNumber1}}</span>
-        </dd>
-        <dt><span>Transportunternehmung</span></dt>
-        <dd>
-          <span>{{haltestelle.transportunternehmung}}</span>
-        </dd>
-        <dt><span>Koordinaten Ost</span></dt>
-        <dd>
-          <span>{{haltestelle.koordOst}}</span>
-        </dd>
-        <dt><span>Koordinaten Nord</span></dt>
-        <dd>
-          <span>{{haltestelle.koordNord}}</span>
-        </dd>
-  </div>
-</div>
+<mat-card>
+  <mat-card-title>Haltestelle Information</mat-card-title>
+  <hr>
+  <mat-list>
+    <mat-list-item>
+      <dt><span>Name</span></dt>
+      <dd><span>{{haltestelle.name}}</span></dd>
+    </mat-list-item>
+    <mat-list-item>
+      <dt><span>Gemeinde</span></dt>
+      <dd>
+        <span>{{haltestelle.gemeinde}}</span>
+      </dd>
+    </mat-list-item>
+    <mat-list-item>
+      <dt><span>Transportunternehmung</span></dt>
+      <dd>
+        <span>{{haltestelle.transportunternehmung}}</span>
+      </dd>
+    </mat-list-item>
+    <mat-list-item>
+      <dt><span>Ort</span></dt>
+      <dd>
+        <span>{{haltestelle.ort}}</span>
+      </dd>
+    </mat-list-item>
+    <mat-list-item>
+      <dt><span>Höhe</span></dt>
+      <dd>
+        <span>{{haltestelle.hoehe}}</span>
+      </dd>
+    </mat-list-item>
+    <mat-list-item>
+      <dt><span>Koordinaten Ost</span></dt>
+      <dd>
+        <span>{{haltestelle.koordOst}}</span>
+      </dd>
+    </mat-list-item>
+    <mat-list-item>
+      <dt><span>Koordinaten Nord</span></dt>
+      <dd>
+        <span>{{haltestelle.koordNord}}</span>
+      </dd>
+    </mat-list-item>
+  </mat-list>
+</mat-card>

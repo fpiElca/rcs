@@ -4,7 +4,7 @@
 
 <mat-list>
   <mat-list-item *ngFor="let haltestelle of haltestellen">
-    <div matLine><a [routerLink]="['/haltestellen', haltestelle.id ]">{{haltestelle.name}}</a></div>
+    <div matLine><a [routerLink]="['/detail', haltestelle._links.self.href ]">{{haltestelle.name}}</a></div>
     <p matLine (click)="toggleFavorite(haltestelle)">
         <mat-icon *ngIf="haltestelle.favorit" matListIcon>star</mat-icon>
         <mat-icon *ngIf="!haltestelle.favorit" matListIcon>star_border</mat-icon>
