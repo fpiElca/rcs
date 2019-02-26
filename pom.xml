@@ -8,7 +8,6 @@
      
       <modules>
         <module>frontend</module>
-        <module>frontend7</module>
         <module>backend</module>
       </modules>
     </project>
