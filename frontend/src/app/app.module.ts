@@ -27,14 +27,10 @@ export class HaltestellenResolver implements Resolve<Haltestelle> {
 }
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'haltestellen',
-    pathMatch: 'full'
-  },
   { path: "", component: HaltestellenListComponent},
+  { path: "haltestellen", component: HaltestellenListComponent},
   {
-    path: ':id',
+    path: 'haltestellen/:id',
     component: HaltestellenDetailComponent
   }
 ];

@@ -1,9 +1,7 @@
 package ch.elca.rcs.backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.opencsv.bean.CsvBindByPosition;
 import lombok.Data;
-import org.springframework.data.web.JsonPath;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,31 +10,30 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Haltestelle {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @JsonProperty("Dst-Bezeichnung-offiziell")
+    @CsvBindByPosition(position = 0)
     private String name;
 
-    @JsonProperty("Ort")
+    @CsvBindByPosition(position = 1)
     private String ort;
 
-    @JsonProperty("KOORDZ")
+    @CsvBindByPosition(position = 2)
     private BigDecimal hoehe;
 
-    @JsonProperty("Gde-Name")
+    @CsvBindByPosition(position = 3)
     private String gemeinde;
 
-    @JsonProperty("GO-Abk")
+    @CsvBindByPosition(position = 4)
     private String transportunternehmung;
 
-    @JsonProperty("KOORDE")
+    @CsvBindByPosition(position = 5)
     private BigDecimal koordOst;
 
-    @JsonProperty("KOORDN")
+    @CsvBindByPosition(position = 6)
     private BigDecimal koordNord;
 }
