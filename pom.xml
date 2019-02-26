@@ -1,10 +1,9 @@
 
     <project>
       <modelVersion>4.0.0</modelVersion>
-      <groupId>ch.elca</groupId>
-      <artifactId>rcs</artifactId>
+      <groupId>ch.elca.rcs</groupId>
+      <artifactId>rcs-parent</artifactId>
       <version>0.0.1-SNAPSHOT</version>
-      <name>rcs</name>
       <packaging>pom</packaging>
      
       <modules>

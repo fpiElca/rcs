@@ -1,26 +1,14 @@
-import { AppPage } from "./app.po";
+import { AppPage } from './app.po';
 
-import { getCurrentRouteUrl } from "./utils";
-
-describe("App", () => {
+describe('workspace-project App', () => {
   let page: AppPage;
 
-  beforeEach(() => (page = new AppPage()));
-
-  it('should redirect to "about" route', () => {
-    page.navigateTo();
-    expect(getCurrentRouteUrl()).toEqual("about");
+  beforeEach(() => {
+    page = new AppPage();
   });
 
-  it("should display current year in the footer", () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getCurrentYear()).toEqual(new Date().getFullYear().toString());
-  });
-
-  it('should have "About", "Features", "Examples" menus', () => {
-    page.navigateTo();
-    page
-      .getAllMenus()
-      .then(menus => expect(menus).toEqual(["About", "Features", "Examples"]));
+    expect(page.getParagraphText()).toEqual('Welcome to frontend7!');
   });
 });

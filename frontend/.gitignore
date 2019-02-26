@@ -1,32 +1,12 @@
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- @fpiElca Sign out
-110
-1,328 445 tomastrajan/angular-ngrx-material-starter
- Code  Issues 24  Pull requests 3  Projects 0  Wiki  Insights
-angular-ngrx-material-starter/.gitignore
-4bf2834  on 30 Oct 2018
-@kosmas58 kosmas58 docs: add Compodoc to generate a static app documentation (#410)
-@tomastrajan @timdeschryver @kosmas58 @Jeykairis @angular-cli
-     
-Executable File  52 lines (42 sloc)  619 Bytes
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
 /dist
 /tmp
 /out-tsc
-/coverage
 
 # dependencies
 /node_modules
-yarn.lock
 
 # IDEs and editors
 /.idea
@@ -39,13 +19,10 @@ yarn.lock
 
 # IDE - VSCode
 .vscode/*
-# !.vscode/settings.json
-# !.vscode/tasks.json
-# !.vscode/launch.json
-# !.vscode/extensions.json
-
-# compodoc
-/documentation
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # misc
 /.sass-cache
@@ -53,30 +30,10 @@ yarn.lock
 /coverage
 /libpeerconnection.log
 npm-debug.log
+yarn-error.log
 testem.log
 /typings
-
-# e2e
-/e2e/src/*.js
-/e2e/src/*.map
-/cypress/screenshots
 
 # System Files
 .DS_Store
 Thumbs.db
-
-# debug
-debug.log
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Press h to open a hovercard with more details.

@@ -1,41 +1,26 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { SharedModule } from "@app/shared";
-import { CoreModule } from "@app/core";
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HaltestellenListComponent } from './haltestellen-list/haltestellen-list.component';
+import { HaltestellenDetailComponent } from './haltestellen-detail/haltestellen-detail.component';
 
-import { SettingsModule } from "./settings";
-import { StaticModule } from "./static";
-
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { HaltestellenComponent } from "./haltestelle-list/haltestellen.component";
-import { HaltestelleDetailComponent } from "./haltestelle-detail/haltestelle-detail.component";
+import {MatListModule, MatIconModule} from '@angular/material';
 
 @NgModule({
-  imports: [
-    // angular
-    BrowserAnimationsModule,
-    BrowserModule,
-
-    // core & shared
-    CoreModule,
-    SharedModule,
-
-    // features
-    StaticModule,
-    SettingsModule,
-
-    // app
-    AppRoutingModule
-  ],
   declarations: [
     AppComponent,
-    HaltestellenComponent,
-    HaltestelleDetailComponent
+    HaltestellenListComponent,
+    HaltestellenDetailComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
