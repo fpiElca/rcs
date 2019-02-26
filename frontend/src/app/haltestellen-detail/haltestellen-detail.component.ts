@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Haltestelle} from '../haltestelle';
+import {ActivatedRoute} from '@angular/router';
+import {HaltestellenService} from '../haltestellen.service';
 
 @Component({
   selector: 'app-haltestellen-detail',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HaltestellenDetailComponent implements OnInit {
 
-  constructor() { }
+  haltestelle: Haltestelle;
 
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private service: HaltestellenService) {
   }
 
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.service.find(params['id'] as number).subscribe(res => this.haltestelle = res)
+    });
+  }
+
+  previousState() {
+    window.history.back();
+  }
 }

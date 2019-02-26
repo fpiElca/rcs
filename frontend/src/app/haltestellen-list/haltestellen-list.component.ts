@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { HaltestellenService } from '../haltestellen.service';
-import { Haltestelle } from '../haltestelle';
+import {Component, OnInit} from '@angular/core';
+import {HaltestellenService} from '../haltestellen.service';
+import {Haltestelle} from '../haltestelle';
 
 @Component({
   selector: 'app-haltestellen-list',
@@ -11,10 +11,13 @@ export class HaltestellenListComponent implements OnInit {
 
   haltestellen: Haltestelle[];
 
-  constructor(public haltestellenService: HaltestellenService) { }
+  constructor(private haltestellenService: HaltestellenService) {
+  }
 
   ngOnInit() {
-    this.haltestellenService.getHaltestellen().subscribe(data => this.haltestellen = data);
+    this.haltestellenService.findAll().subscribe(data => {
+      this.haltestellen = data
+    });
   }
 
   toggleFavorite(haltestelle: Haltestelle): void {
