@@ -7,6 +7,7 @@ import {debounceTime, distinctUntilChanged, finalize, switchMap, tap} from 'rxjs
 
 import {HaltestellenService} from '../haltestellen.service';
 import {Haltestelle} from '../haltestelle';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-haltestellen-list',
@@ -25,7 +26,8 @@ export class HaltestellenListComponent implements OnInit {
   wirdGeladen = false;
 
   constructor(private haltestellenService: HaltestellenService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private router:Router) {
   }
 
   private initDatasource(haltestellen: Haltestelle[]) {
@@ -71,5 +73,9 @@ export class HaltestellenListComponent implements OnInit {
     if (haltestellen) {
       return haltestellen.name;
     }
+  }
+
+  onRowClicked(haltestelle: Haltestelle){
+    this.router.navigate(['detail/' , haltestelle._links.self.href] );
   }
 }

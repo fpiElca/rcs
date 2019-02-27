@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 export class HaltestellenService {
 
   endpointUrl = '/api/';
-  haltenstellenEndpointUrl = '/api/haltestellen/';
+  haltenstellenEndpointUrl = '/api/haltestellen';
 
   constructor(protected http: HttpClient) {
   }
@@ -26,6 +26,6 @@ export class HaltestellenService {
   }
 
   suche(param: { query: string }): Observable<Haltestelle[]> {
-    return this.http.get<Haltestelle[]>(`${this.haltenstellenEndpointUrl}search/findByNameContainingIgnoreCase?name=${param.query}`);
+    return this.http.get<Haltestelle[]>(`${this.haltenstellenEndpointUrl}/search/findByNameContainingIgnoreCase?name=${param.query}`);
   }
 }
