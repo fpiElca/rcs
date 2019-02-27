@@ -9,7 +9,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HaltestellenService {
 
-  public endpointUrl = '/api/';
+  endpointUrl = '/api/';
+  haltenstellenEndpointUrl = '/api/haltestellen/';
 
   constructor(protected http: HttpClient) {
   }
@@ -21,10 +22,10 @@ export class HaltestellenService {
 
   findAll(): Observable<Haltestelle[]> {
     return this.http
-      .get<Haltestelle[]>(`${this.endpointUrl}haltestellen`);
+      .get<Haltestelle[]>(`${this.haltenstellenEndpointUrl}`);
   }
 
-  suche(param: { query: any }): Observable<Haltestelle[]> {
-    return this.http.get<Haltestelle[]>(`${this.endpointUrl}`);
+  suche(param: { query: string }): Observable<Haltestelle[]> {
+    return this.http.get<Haltestelle[]>(`${this.haltenstellenEndpointUrl}search/findByNameContainingIgnoreCase?name=${param.query}`);
   }
 }

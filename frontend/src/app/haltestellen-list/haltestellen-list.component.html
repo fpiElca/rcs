@@ -1,19 +1,8 @@
 <div class="search col-lg-6">
   <form class="example-form" [formGroup]='suchFormulare'>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Suchen" [matAutocomplete]="auto" formControlName='gesuchteHaltestelle'>
+      <input matInput placeholder="Suchen"  formControlName='gesuchteHaltestelle'>
     </mat-form-field>
-
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngIf="wirdGeladen" class="is-loading">
-        <mat-spinner diameter="50"></mat-spinner>
-      </mat-option>
-      <ng-container *ngIf="!wirdGeladen">
-        <mat-option *ngFor="let haltestelle of gefundeneHaltestellen" [value]="haltestelle">
-          <span>{{ haltestelle.name }}</span>
-        </mat-option>
-      </ng-container>
-    </mat-autocomplete>
   </form>
 </div>
 <h2>
@@ -50,6 +39,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons *ngIf="dataSource.data.length > 5"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons *ngIf="dataSource? dataSource.data.length > 5 : false"></mat-paginator>
 </div>
 

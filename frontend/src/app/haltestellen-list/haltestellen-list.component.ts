@@ -3,7 +3,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 
-import {debounceTime, finalize, switchMap, tap} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, finalize, switchMap, tap} from 'rxjs/operators';
 
 import {HaltestellenService} from '../haltestellen.service';
 import {Haltestelle} from '../haltestelle';
@@ -28,7 +28,7 @@ export class HaltestellenListComponent implements OnInit {
               private formBuilder: FormBuilder) {
   }
 
-  private initDatasource(haltestellen: Haltestelle[]){
+  private initDatasource(haltestellen: Haltestelle[]) {
     this.dataSource = new MatTableDataSource<Haltestelle>(haltestellen);
     this.dataSource.paginator = this.paginator;
   }
@@ -47,9 +47,10 @@ export class HaltestellenListComponent implements OnInit {
       .get('gesuchteHaltestelle')
       .valueChanges
       .pipe(
-        debounceTime(300),
+        debounceTime(600),
+        distinctUntilChanged(),
         tap(() => this.wirdGeladen = true),
-        switchMap(value => this.haltestellenService.findAll()
+        switchMap(value => this.haltestellenService.suche({query: value})
           .pipe(
             finalize(() => this.wirdGeladen = false),
           )
@@ -67,6 +68,8 @@ export class HaltestellenListComponent implements OnInit {
   }
 
   displayFn(haltestellen: Haltestelle) {
-    if (haltestellen) { return haltestellen.name; }
+    if (haltestellen) {
+      return haltestellen.name;
+    }
   }
 }
