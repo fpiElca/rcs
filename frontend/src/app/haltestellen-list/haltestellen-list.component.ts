@@ -38,7 +38,7 @@ export class HaltestellenListComponent implements OnInit {
   ngOnInit() {
 
     this.haltestellenService.findAll().subscribe(data => {
-      this.initDatasource(data['_embedded'].haltestellen);
+      this.initDatasource(data['_embedded']['rcs:haltestellen']);
     });
 
     this.suchFormulare = this.formBuilder.group({
@@ -59,7 +59,7 @@ export class HaltestellenListComponent implements OnInit {
         )
       )
       .subscribe(data => {
-        this.gefundeneHaltestellen = data['_embedded'].haltestellen
+        this.gefundeneHaltestellen = data['_embedded']['rcs:haltestellen']
         this.initDatasource(this.gefundeneHaltestellen);
       });
   }
