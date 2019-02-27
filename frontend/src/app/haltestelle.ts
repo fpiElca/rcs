@@ -1,7 +1,7 @@
 export class Haltestelle {
   name: String;
   ort: String;
-  favorit: boolean;
+  favorite: boolean;
   hoehe: number;
   gemeinde: string;
   transportunternehmung: string;

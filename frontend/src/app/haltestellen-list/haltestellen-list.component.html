@@ -1,15 +1,55 @@
+<div class="search col-lg-6">
+  <form class="example-form" [formGroup]='suchFormulare'>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Suchen" [matAutocomplete]="auto" formControlName='gesuchteHaltestelle'>
+    </mat-form-field>
+
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngIf="wirdGeladen" class="is-loading">
+        <mat-spinner diameter="50"></mat-spinner>
+      </mat-option>
+      <ng-container *ngIf="!wirdGeladen">
+        <mat-option *ngFor="let haltestelle of gefundeneHaltestellen" [value]="haltestelle">
+          <span>{{ haltestelle.name }}</span>
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </form>
+</div>
 <h2>
   Haltestellen
 </h2>
 
-<mat-list>
-  <mat-list-item *ngFor="let haltestelle of haltestellen">
-    <div matLine><a [routerLink]="['/detail', haltestelle._links.self.href ]">{{haltestelle.name}}</a></div>
-    <p matLine (click)="toggleFavorite(haltestelle)">
-        <mat-icon *ngIf="haltestelle.favorit" matListIcon>star</mat-icon>
-        <mat-icon *ngIf="!haltestelle.favorit" matListIcon>star_border</mat-icon>
-        <span class="small"> {{haltestelle.ort}} </span>
-    </p>
-  </mat-list-item>
-</mat-list>
+<div class="col-lg-6">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Favorite-Spalte -->
+    <ng-container matColumnDef="favorite">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let haltestelle">
+        <p matLine (click)="toggleFavorite(haltestelle)">
+          <mat-icon *ngIf="haltestelle.favorite" matListIcon>star</mat-icon>
+          <mat-icon *ngIf="!haltestelle.favorite" matListIcon>star_border</mat-icon>
+        </p>
+      </td>
+    </ng-container>
+
+    <!-- Name-Spalte -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let haltestelle"> <a [routerLink]="['/detail', haltestelle._links.self.href ]">{{haltestelle.name}}</a></td>
+    </ng-container>
+
+    <!-- Ort-Spalte -->
+    <ng-container matColumnDef="ort">
+      <th mat-header-cell *matHeaderCellDef> Ort</th>
+      <td mat-cell *matCellDef="let haltestelle"> {{haltestelle.ort}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons *ngIf="dataSource.data.length > 5"></mat-paginator>
+</div>
 

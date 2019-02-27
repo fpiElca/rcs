@@ -16,9 +16,7 @@ export class HaltestellenDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("initializing HaltestellenDetailComponent ############################################");
     this.route.params.subscribe(params => {
-
       this.service.find(params['self']).subscribe(res => this.haltestelle = res)
     });
   }
