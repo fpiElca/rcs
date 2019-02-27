@@ -28,7 +28,7 @@ public class HaltestelleRepositoryTests {
     @Autowired
     private HaltestelleRepository haltestelleRepository;
 
-    private TestModels testModels = new TestModels();
+    private final TestModels testModels = new TestModels();
 
     @Test
     public void save_haltestelleGiven_persisted() {
@@ -53,6 +53,5 @@ public class HaltestelleRepositoryTests {
 
         // assert
         assertThat(entityManager.find(Haltestelle.class, haltestelle.getId())).isNull();
-
     }
 }

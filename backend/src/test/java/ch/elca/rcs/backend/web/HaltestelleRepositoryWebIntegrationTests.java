@@ -17,6 +17,6 @@ public class HaltestelleRepositoryWebIntegrationTests extends AbstractWebIntegra
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaTypes.HAL_JSON))
-                .andExpect(jsonPath("$._links.haltestellen.href", notNullValue()));
+                .andExpect(jsonPath("$._links.rcs:haltestellen.href", notNullValue()));
     }
 }

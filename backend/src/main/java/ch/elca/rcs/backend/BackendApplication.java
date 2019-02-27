@@ -12,7 +12,7 @@ public class BackendApplication {
 
 	public static String CURIE_NAMESPACE = "rcs";
 
-	// @Bean // TODO: enable, adapt WebIntegration test and frontend
+	@Bean
 	public CurieProvider curieProvider() {
 		return new DefaultCurieProvider(CURIE_NAMESPACE, new UriTemplate("/docs/{rel}.html"));
 	}
