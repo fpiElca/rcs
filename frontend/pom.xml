@@ -8,7 +8,7 @@
   <build>
     <resources>
       <resource>
-        <directory>src/main/frontend/dist</directory>
+        <directory>dist/frontend7</directory>
         <filtering>false</filtering>
         <targetPath>META-INF/resources</targetPath>
       </resource>
