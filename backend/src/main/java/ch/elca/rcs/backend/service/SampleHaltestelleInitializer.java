@@ -2,65 +2,82 @@ package ch.elca.rcs.backend.service;
 
 import ch.elca.rcs.backend.domain.Haltestelle;
 import ch.elca.rcs.backend.repository.HaltestelleRepository;
+import com.google.common.io.Files;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.tika.Tika;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.util.LinkedList;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class initializes some sample Haltestelle so that we can play a bit with the application
  * while some content in it.
  */
 @Component
+@Slf4j
 public class SampleHaltestelleInitializer implements ApplicationRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleHaltestelleInitializer.class);
+
+    private static final String IMPORT_FILE_EXTENSION_CSV = "csv";
+
+    private static final Set<String> POSSIBLE_CSV_MIME_TYPES = new HashSet<String>(Arrays.asList(
+        "application/csv",
+        "application/x-csv",
+        "text/csv",
+        "text/comma-separated-values",
+        "text/x-comma-separated-values",
+        "text/tab-separated-values",
+        "application/vnd.ms-excel",
+        "text/x-csv",
+        "text/plain"));
+
+    @Value("${stops.sample.data}")
+    private String stopSampleFilename;
 
     @Autowired
     private HaltestelleRepository haltestelleRepository;
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
-        LOGGER.info("Initializing some Haltestelle");
+    public void run(ApplicationArguments args) {
+        LOGGER.info("Starting DB initialization of some Stops");
+        try {
+            Resource resource = new ClassPathResource(stopSampleFilename);
 
-        List<Haltestelle> sampleData = new LinkedList<>();
+            InputStream stopsInputStream = resource.getInputStream();
 
-        Haltestelle haltestelle = new Haltestelle();
-        haltestelle.setName("First Haltestelle");
-        haltestelle.setGemeinde("Bern");
-        haltestelle.setHoehe(BigDecimal.valueOf(4));
-        haltestelle.setOrt("Bern");
-        haltestelle.setTransportunternehmung("SBB");
-        haltestelle.setKoordNord(BigDecimal.valueOf(12));
-        haltestelle.setKoordOst(BigDecimal.valueOf(12));
-        sampleData.add(haltestelle);
+            Tika tika = new Tika();
+            String mimeType = tika.detect(stopsInputStream);
+            String fileExtension = Files.getFileExtension(resource.getFilename());
 
-        haltestelle = new Haltestelle();
-        haltestelle.setName("Second Haltestelle");
-        haltestelle.setGemeinde("Neuchatel");
-        haltestelle.setHoehe(BigDecimal.valueOf(10));
-        haltestelle.setOrt("Neuchatel");
-        haltestelle.setTransportunternehmung("SBB");
-        haltestelle.setKoordNord(BigDecimal.valueOf(21));
-        haltestelle.setKoordOst(BigDecimal.valueOf(21));
-        sampleData.add(haltestelle);
+            log.info("File read with mime type: {}", mimeType);
 
-        haltestelle = new Haltestelle();
-        haltestelle.setName("Third Haltestelle");
-        haltestelle.setGemeinde("Genève");
-        haltestelle.setHoehe(BigDecimal.valueOf(15));
-        haltestelle.setOrt("Genève");
-        haltestelle.setTransportunternehmung("SBB");
-        haltestelle.setKoordNord(BigDecimal.valueOf(14));
-        haltestelle.setKoordOst(BigDecimal.valueOf(14));
-        sampleData.add(haltestelle);
+            if (POSSIBLE_CSV_MIME_TYPES.contains(mimeType) && IMPORT_FILE_EXTENSION_CSV.equals(fileExtension)) {
+                try {
+                    List<Haltestelle> sampleData = StopReader.parseStops(stopsInputStream);
+                    haltestelleRepository.saveAll(sampleData);
 
-        haltestelleRepository.saveAll(sampleData);
+                } catch (Exception ex) {
+                    log.error("Exception while parsing and saving: {}", ex);
+                }
+            } else {
+                log.error("File format: {} or extension: {} not correct: {}", mimeType, fileExtension);
+            }
+        } catch (Exception ex) {
+            log.error("Exception while importing file: {}", ex);
+        }
+        log.info("-- End stops initialization --");
     }
 }

@@ -16,24 +16,24 @@ public class Haltestelle {
     @GeneratedValue
     private Long id;
 
-    @CsvBindByPosition(position = 0)
+    @CsvBindByPosition(position = 2)
     private String name;
 
-    @CsvBindByPosition(position = 1)
+    @CsvBindByPosition(position = 7)
     private String ort;
 
-    @CsvBindByPosition(position = 2)
+    //@CsvBindByPosition(position = 2)
     private BigDecimal hoehe;
 
-    @CsvBindByPosition(position = 3)
+    @CsvBindByPosition(position = 9)
     private String gemeinde;
 
-    @CsvBindByPosition(position = 4)
+    @CsvBindByPosition(position = 6)
     private String transportunternehmung;
 
-    @CsvBindByPosition(position = 5)
-    private BigDecimal koordOst;
+    @CsvBindByPosition(position = 16)
+    private String koordOst;
 
-    @CsvBindByPosition(position = 6)
-    private BigDecimal koordNord;
+    @CsvBindByPosition(position = 17)
+    private String koordNord;
 }
