@@ -15,17 +15,16 @@ export class HaltestellenService {
   constructor(protected http: HttpClient) {
   }
 
-  find(_self: string): Observable<Haltestelle> {
-    return this.http
-      .get<Haltestelle>(_self);
+  find(_self: string): Observable<Haltestelle[]> {
+    return this.http.get<Haltestelle[]>(_self);
   }
 
-  findAll(): Observable<Haltestelle[]> {
+  findAll(param: { size: number }): Observable<Haltestelle[]> {
     return this.http
-      .get<Haltestelle[]>(`${this.haltenstellenEndpointUrl}`);
+      .get<Haltestelle[]>(`${this.haltenstellenEndpointUrl}?size=${param.size}`);
   }
 
-  suche(param: { query: string }): Observable<Haltestelle[]> {
+  findByName(param: { query: string }): Observable<Haltestelle[]> {
     return this.http.get<Haltestelle[]>(`${this.haltenstellenEndpointUrl}/search/findByNameContainingIgnoreCase?name=${param.query}`);
   }
 }
