@@ -8,7 +8,7 @@
   <build>
     <resources>
       <resource>
-        <directory>src/main/frontend/dist</directory>
+        <directory>dist/frontend</directory>
         <filtering>false</filtering>
         <targetPath>META-INF/resources</targetPath>
       </resource>
@@ -40,8 +40,6 @@
               <arguments>install</arguments>
             </configuration>
           </execution>
-          <!-- <execution> <id>yarn lint</id> <goals> <goal>yarn</goal> </goals>
-                            <configuration> <arguments>lint</arguments> </configuration> </execution> -->
           <execution>
             <id>yarn build</id>
             <goals>
@@ -52,19 +50,6 @@
               <arguments>dist</arguments>
             </configuration>
           </execution>
-          <!--
-                    <execution>
-                            <id>yarn test</id>
-                            <goals>
-                                   <goal>yarn</goal>
-                            </goals>
-                            <phase>test</phase>
-                            <configuration>
-                                   <arguments>test</arguments>
-                                   <failOnError>true</failOnError>
-                            </configuration>
-                    </execution>
-                    -->
         </executions>
       </plugin>
     </plugins>

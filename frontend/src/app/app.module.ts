@@ -1,16 +1,73 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HaltestellenListComponent} from './haltestellen-list/haltestellen-list.component';
+import {HaltestellenDetailComponent} from './haltestellen-detail/haltestellen-detail.component';
+
+import {
+  MatAutocompleteModule, MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule, MatPaginatorModule,
+  MatProgressSpinnerModule, MatSortModule, MatTableModule
+} from '@angular/material';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule, Routes} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+const routes: Routes = [
+  {
+    path: 'detail/:self',
+    component: HaltestellenDetailComponent
+  },
+  {
+    path: 'haltestellen',
+    component: HaltestellenListComponent
+  },
+  { path: '',
+    redirectTo: '/haltestellen',
+    pathMatch: 'full'
+  }
+
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HaltestellenListComponent,
+    HaltestellenDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatIconModule,
+    MatCardModule,
+    MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+    HttpClientModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(
+      routes,
+      { enableTracing: false }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+
+export class AppModule {
+}
