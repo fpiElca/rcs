@@ -10,7 +10,7 @@
 </h2>
 
 <div class="col-lg-6">
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
 
     <!-- Favorite-Spalte -->
     <ng-container matColumnDef="favorite">
@@ -36,9 +36,16 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = onRowClicked(row)></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <mat-paginator [length]="length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="handlePagination($event)"
+                 showFirstLastButtons
+                 *ngIf="dataSource? dataSource.data.length > 5 : false">
+  </mat-paginator>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons *ngIf="dataSource? dataSource.data.length > 5 : false"></mat-paginator>
+  <!--<mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" ></mat-paginator>-->
 </div>
 

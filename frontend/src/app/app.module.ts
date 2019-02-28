@@ -13,7 +13,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule, MatPaginatorModule,
-  MatProgressSpinnerModule, MatTableModule
+  MatProgressSpinnerModule, MatSortModule, MatTableModule
 } from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
@@ -57,10 +57,11 @@ const routes: Routes = [
     MatButtonModule,
     MatPaginatorModule,
     MatTableModule,
+    MatSortModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true }
+      { enableTracing: false }
     )
   ],
   providers: [],
