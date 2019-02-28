@@ -18,8 +18,8 @@ public class TestModels {
             result.setGemeinde("Gemeinde " + i);
             result.setOrt("Ort " + i);
             result.setHoehe(valueOf(300 + 10 * i));
-            result.setKoordNord(valueOf(1000 + i));
-            result.setKoordOst(valueOf(5000 + i));
+            result.setKoordNord(valueOf(1000 + i).toString());
+            result.setKoordOst(valueOf(5000 + i).toString());
             result.setTransportunternehmung("TU " + i);
             return result;
         }).collect(toList());
