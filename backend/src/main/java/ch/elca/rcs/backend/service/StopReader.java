@@ -4,6 +4,7 @@ import ch.elca.rcs.backend.domain.Haltestelle;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import org.apache.tika.io.IOUtils;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -17,7 +18,7 @@ public class StopReader {
         ColumnPositionMappingStrategy mappingStrategy = new ColumnPositionMappingStrategy();
         mappingStrategy.setType(Haltestelle.class);
 
-        try (Reader reader = new StringReader(new String(inputstream.readAllBytes(), "UTF-8"))) {
+        try (Reader reader = new StringReader(IOUtils.toString(inputstream, "UTF-8"))) {
             CsvToBean csvToBean = new CsvToBeanBuilder(reader)
                 .withType(Haltestelle.class)
                 .withSkipLines(1) // To skip header
